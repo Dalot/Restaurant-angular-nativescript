@@ -136,5 +136,8 @@
       }
     }
   },
-  "defaultProject": "angular-restaurant"
+  "defaultProject": "angular-restaurant",
+  "cli": {
+    "defaultCollection": "@nativescript/schematics"
+  }
 }
