@@ -8,14 +8,17 @@ import { User } from '@/models/user';
 
 export class AppComponent {
     currentUser: User;
+    userIsAdmin = "";
 
     constructor(
         private router: Router,
         private authenticationService: AuthenticationService
     ) {
-        console.log(this.authenticationService.currentUser);
-        this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
-        console.log(this.authenticationService.currentUser);
+        this.authenticationService.currentUser.subscribe(x => {
+            this.currentUser = x;
+            this.userIsAdmin = x.role;
+        });
+
     }
 
     logout() {

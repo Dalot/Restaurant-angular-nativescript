@@ -16,6 +16,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     currentUser: User;
     currentUserSubscription: Subscription;
     users: User[] = [];
+    
 
     constructor(
         private authenticationService: AuthenticationService,

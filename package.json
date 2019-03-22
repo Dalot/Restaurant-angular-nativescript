@@ -26,6 +26,7 @@
     "@nativescript/schematics": "^0.5.2",
     "core-js": "^2.5.4",
     "nativescript-angular": "~7.2.0",
+    "nativescript-localstorage": "^2.0.0",
     "nativescript-theme-core": "~1.0.4",
     "reflect-metadata": "~0.1.12",
     "rxjs": "~6.3.3",

@@ -3,16 +3,16 @@
   "compilerOptions": {
     "module": "es2015",
     "moduleResolution": "node",
-    "baseUrl": "./",
+    "baseUrl": "src",
     "paths": {
-      "~/*": [
-          "src/*"
-      ],
+        "@/*": [
+            "app/*"
+        ],
       "*": [
         "./node_modules/tns-core-modules/*",
         "./node_modules/*"
       ]
-    }
+    },
   },
    "exclude": [
     "**/*.tns.ts",

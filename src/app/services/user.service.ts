@@ -1,15 +1,20 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { env } from '@/../environments/environment';
 import { User } from '@/models/user';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
+    
+    httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
+    
     constructor(private http: HttpClient) { }
 
     getAll() {
-        return this.http.post<User[]>(`${env.config.apiUrl}/api/admin/users`);
+        return this.http.post<User[]>(`${env.config.apiUrl}/api/admin/users`, this.httpOptions );
     }
 
     getById(id: number) {
