@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+
 import { BehaviorSubject, Observable } from 'rxjs';
+
+
 import { map } from 'rxjs/operators';
 import { env } from '@/../environments/environment';
 import { CustomStorageService } from '@/services/customstorage.service';
@@ -30,8 +33,21 @@ export class AuthenticationService {
     }
 
     login(email: string, password: string) {
+        const data = { 
+            'email': email, 
+            'password': password 
+            
+        };
+        console.log("dd");
+        return this.http.post<any>(`${env.config.apiUrl}/api/login`, this.getFormUrlEncoded(data));
+            
+    }
+    
+    mobileLogin(email: string, password: string) {
+
         return this.http.post<any>(`${env.config.apiUrl}/api/login`, { email, password })
-            .pipe(map(user => {
+            .pipe(map( (user) => {
+                console.log(user);
                 // login successful if there's a jwt token in the response
                 if (user && user.token) {
                     // store user details and jwt token in local storage to keep user logged in between page refreshes
@@ -49,4 +65,16 @@ export class AuthenticationService {
         this.storage.removeItem('currentUser');
         this.currentUserSubject.next(null);
     }
+    
+    getFormUrlEncoded(toConvert) {
+		const formBody = [];
+		for (const property in toConvert) {
+			const encodedKey = encodeURIComponent(property);
+			const encodedValue = encodeURIComponent(toConvert[property]);
+			formBody.push(encodedKey + '=' + encodedValue);
+		}
+		return formBody.join('&');
+	}
+    
+
 }

@@ -1,12 +1,15 @@
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
+
 import { NativeScriptModule } from 'nativescript-angular/nativescript.module';
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule }    from '@angular/forms';
 
-
+import { NativeScriptHttpClientModule } from "nativescript-angular/http-client";
+import { NativeScriptFormsModule } from "nativescript-angular/forms";
 import { CustomStorageService } from './services/customstorage.service'
 import * as mobileStorage from 'nativescript-localstorage';
+
 
 import { ErrorInterceptor } from './helpers/error.interceptor'
 import { JwtInterceptor } from './helpers/jwt.interceptor'
@@ -19,6 +22,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { UserboardComponent } from './components/userboard/userboard.component';
+
 
 
 // Uncomment and add to NgModule imports if you need to use two-way binding
@@ -36,12 +40,15 @@ import { UserboardComponent } from './components/userboard/userboard.component';
     LoginComponent,
     RegisterComponent,
     UserboardComponent,
+    
   ],
   imports: [
     NativeScriptModule,
-    AppRoutingModule,
+    NativeScriptFormsModule,
+    NativeScriptHttpClientModule,
     ReactiveFormsModule,
-    HttpClientModule
+    AppRoutingModule,
+    HttpClientModule,
   ],
   providers: [
     {

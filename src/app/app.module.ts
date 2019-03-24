@@ -25,7 +25,7 @@ import { UserboardComponent } from './components/userboard/userboard.component';
     DashboardComponent,
     LoginComponent,
     RegisterComponent,
-    UserboardComponent
+    UserboardComponent,
   ],
   imports: [
     BrowserModule,
