@@ -3,15 +3,14 @@ import { Router } from '@angular/router';
 
 import { AuthenticationService } from '@/services/authentication.service';
 import { User } from '@/models/user';
+import { Role } from '@/models/role';
 
-require( "nativescript-observable-subscribe/observablesubscribe" );
 
 
 @Component({ selector: 'app-root', templateUrl: 'app.component.html' })
 
 export class AppComponent {
     currentUser = new User;
-    userIsAdmin: string;
 
     constructor(
         private router: Router,
@@ -19,10 +18,12 @@ export class AppComponent {
     ) {
         this.authenticationService.currentUser.subscribe(x => {
             this.currentUser = x;
-            console.log(typeof x);
-            this.userIsAdmin = x.role;
-        }, User);
+        });
 
+    }
+
+    get isAdmin() {
+        return this.currentUser && this.currentUser.role === Role.admin;
     }
 
     logout() {

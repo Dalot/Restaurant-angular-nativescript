@@ -26,7 +26,6 @@
     "@angular/router": "~7.2.0",
     "@nativescript/schematics": "^0.5.2",
     "core-js": "^2.5.4",
-    "kinvey-nativescript-sdk": "^3.12.4",
     "nativescript-angular": "~7.2.0",
     "nativescript-localstorage": "^2.0.0",
     "nativescript-observable-subscribe": "^0.1.5",

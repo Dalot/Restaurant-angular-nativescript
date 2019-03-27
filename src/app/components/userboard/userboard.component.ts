@@ -5,10 +5,11 @@ import { User } from '@/models/user';
 import { AuthenticationService } from '@/services/authentication.service';
 import { UserService } from '@/services/user.service';
 
-@Component({templateUrl: 'userboard.component.html'})
+@Component({templateUrl: './userboard.component.html'})
 
 export class UserboardComponent {
     currentUser: User;
+    userFromApi: any;
     
 
     constructor(
@@ -19,6 +20,8 @@ export class UserboardComponent {
     }
 
     ngOnInit() {
-        
+        this.userService.getById(this.currentUser.id).pipe(first()).subscribe(user => { 
+            this.userFromApi = user;
+        });
     }
 }

@@ -5,11 +5,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { alert, prompt } from "tns-core-modules/ui/dialogs";
 import { Page } from "tns-core-modules/ui/page";
 
-
-import { first } from 'rxjs/operators';
 import { AlertService } from '@/services/alert.service';
 
 import { AuthenticationService } from '@/services/authentication.service';
+import { first } from 'rxjs/operators';
 
 @Component({
     moduleId: module.id,
@@ -27,6 +26,8 @@ export class LoginComponent implements OnInit {
 
     @ViewChild("password") password: ElementRef;
     @ViewChild("confirmPassword") confirmPassword: ElementRef;
+    currentUserSubject: any;
+    error: any;
 
     constructor(
         private formBuilder: FormBuilder,
@@ -86,27 +87,16 @@ export class LoginComponent implements OnInit {
     login() {
         
         console.log(this.f.password.value);
-        this.authenticationService.login(this.f.email.value, this.f.password.value).subscribe(success => {
-             console.log(success);
-            // login successful if there's a jwt token in the response
-            if (user && user.token) {
-                // store user details and jwt token in local storage to keep user logged in between page refreshes
-                this.storage.setItem('currentUser', JSON.stringify(user));
-                this.currentUserSubject.next(user);
-                
-                this.router.navigate([this.returnUrl]);
-            }
-            else
-            {
-                this.alertService.error(error);
-                this.loading = false;
-            }
-        },
-        error => {
-            this.alertService.error(error);
-            this.loading = false;
-        }
-        );
+        this.authenticationService.login(this.f.email.value, this.f.password.value)
+            .pipe(first())
+            .subscribe(
+                data => {
+                    this.router.navigate([this.returnUrl]);
+                },
+                error => {
+                    this.error = error;
+                    this.loading = false;
+                });
            
     }
 

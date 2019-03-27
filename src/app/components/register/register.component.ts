@@ -8,7 +8,7 @@ import { AlertService } from '@/services/alert.service';
 import { UserService } from '@/services/user.service';
 
 
-@Component({templateUrl: 'register.component.html'})
+@Component({templateUrl: './register.component.html'})
 export class RegisterComponent implements OnInit {
     registerForm: FormGroup;
     loading = false;
