@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { env } from '@/../environments/environment';
 import { User } from '@/models/user';
+import { Food } from '@/models/food';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
@@ -31,5 +32,9 @@ export class UserService {
 
     delete(id: number) {
         return this.http.delete(`${env.config.apiUrl}/users/${id}`);
+    }
+
+    getFoods() {
+        return this.http.get<any>(`${env.config.apiUrl}/api/products/foods`, this.httpOptions );
     }
 }

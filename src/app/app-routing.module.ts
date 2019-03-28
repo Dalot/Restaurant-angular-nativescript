@@ -10,27 +10,21 @@ import { AuthGuard } from '@/guards/auth.guard';
 import { Role } from '@/models/role';
 
 const routes: Routes = [
-    { 
-      path: '', component: UserboardComponent, canActivate: [AuthGuard] 
-      
-    },
-    { 
-      path: 'login', component: LoginComponent 
-      
-    },
-    { 
-      path: 'register', component: RegisterComponent 
-      
+    {
+      path: '', component: UserboardComponent, canActivate: [AuthGuard]
     },
     {
-      path: 'admin', 
-      component: DashboardComponent, 
-      canActivate: [AuthGuard], 
-      data: { roles: [Role.admin] } 
+      path: 'login', component: LoginComponent
     },
-    
-    
-    
+    {
+      path: 'register', component: RegisterComponent
+    },
+    {
+      path: 'admin',
+      component: DashboardComponent,
+      canActivate: [AuthGuard],
+      data: { roles: [Role.admin] }
+    },
     // otherwise redirect to home
     { path: '**', redirectTo: '' }
   ];

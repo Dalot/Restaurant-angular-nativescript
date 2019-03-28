@@ -5,7 +5,10 @@ import { AuthenticationService } from '@/services/authentication.service';
 import { User } from '@/models/user';
 import { Role } from '@/models/role';
 
-@Component({ selector: 'app-root', templateUrl: 'app.component.html' })
+@Component({
+    moduleId: module.id,
+    selector: 'app-root',
+    templateUrl: 'app.component.html' })
 
 export class AppComponent {
     currentUser: User;
@@ -20,7 +23,6 @@ export class AppComponent {
         });
 
     }
-
     get isAdmin() {
         return this.currentUser && this.currentUser.role === Role.admin;
     }

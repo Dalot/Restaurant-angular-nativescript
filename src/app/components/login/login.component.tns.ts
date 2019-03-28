@@ -66,7 +66,6 @@ export class LoginComponent implements OnInit {
         if (this.loginForm.invalid) {
             return;
         }
-        
         if (!this.f.email.value || !this.f.password.value) {
             this.alert('Please provide both an email address and password.');
             return;
@@ -89,7 +88,6 @@ export class LoginComponent implements OnInit {
                     this.error = error;
                     this.loading = false;
                 });
-           
     }
 
     register() {
