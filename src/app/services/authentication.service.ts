@@ -3,8 +3,6 @@ import { HttpClient } from '@angular/common/http';
 
 import { BehaviorSubject, Observable } from 'rxjs';
 
-import * as localStorage from 'nativescript-localstorage';
-
 import { map } from 'rxjs/operators';
 import { env } from '@/../environments/environment';
 
@@ -14,10 +12,9 @@ import { User } from '@/models/user';
 @Injectable({ providedIn: 'root' })
 
 export class AuthenticationService {
-    
     private currentUserSubject: BehaviorSubject<User>;
     public currentUser: Observable<User>;
-    
+
     constructor(
         private http: HttpClient,
         private localStorage: Storage
@@ -29,15 +26,16 @@ export class AuthenticationService {
     public get currentUserValue(): User {
         return this.currentUserSubject.value;
     }
-    
     login(email: string, password: string) {
         const data = { 
-            'email': email, 
-            'password': password 
-            
+            'email': email,
+            'password': password
         };
+        console.log(email);
+        console.log("hello");
         return this.http.post<any>(`${env.config.apiUrl}/api/login`, data)
             .pipe(map( (user) => {
+                console.error(user);
                 console.log(user);
                 // login successful if there's a jwt token in the response
                 if (user && user.token) {
@@ -46,7 +44,6 @@ export class AuthenticationService {
                     this.currentUserSubject.next(user);
                 }
 
-                
                 return user;
             }));
     }
@@ -56,8 +53,5 @@ export class AuthenticationService {
         this.localStorage.removeItem('currentUser');
         this.currentUserSubject.next(null);
     }
-    
-
-    
 
 }

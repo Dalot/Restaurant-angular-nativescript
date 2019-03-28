@@ -10,8 +10,8 @@ import { NativeScriptFormsModule } from 'nativescript-angular/forms';
 
 import * as mobileLocalStorage from 'nativescript-localstorage';
 
-import { ErrorInterceptor } from '@/helpers/error.interceptor';
-import { JwtInterceptor } from '@/helpers/jwt.interceptor';
+// import { ErrorInterceptor } from '@/helpers/error.interceptor';
+// import { JwtInterceptor } from '@/helpers/jwt.interceptor';
 
 import { AppRoutingModule } from '@/app-routing.module.tns';
 import { AppComponent } from '@/app.component';
@@ -39,7 +39,6 @@ import { UserboardComponent } from '@/components/userboard/userboard.component';
     LoginComponent,
     RegisterComponent,
     UserboardComponent,
-    
   ],
   imports: [
     NativeScriptModule,
@@ -54,8 +53,8 @@ import { UserboardComponent } from '@/components/userboard/userboard.component';
       provide: Storage,
       useValue: mobileLocalStorage
     },
-      { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-      { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+      // { provide: NS_HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+      // { provide: NS_HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     ],
   bootstrap: [AppComponent],
   schemas: [NO_ERRORS_SCHEMA]

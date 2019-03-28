@@ -25,7 +25,7 @@
             "stopOnEntry": true,
             "launchTests": true,
             "tnsArgs": [
-                "--justlaunch"
+                "--bundle"
             ]
         },
         {
