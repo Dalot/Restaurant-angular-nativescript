@@ -1,0 +1,25 @@
+// SCSS FILES COMPONENT SPECIFIC
+// Start custom common variables
+@import '../../../app-variables.scss';
+// Custom styles
+
+.btn {
+    width:50%;
+    margin: 5px 0px;
+}
+
+.list-group {
+    .list-group-item {
+        padding: 20 0 20 0;
+
+        .list-group-item-content {
+            padding: 8 15 4 15;
+            background-color: $background-light;
+        }
+
+        .fa {
+            color: $accent-dark;
+        }
+       
+    }
+}

@@ -18,19 +18,84 @@
     <Label class="action-bar-title" text="Home"></Label>
 </ActionBar>
 
-<GridLayout class="page page-content">
-    <Label class="page-icon fa" text="&#xf015;"></Label>
-    <Label class="page-placeholder" [text]="this.foods[0].name"></Label>
-    <Label class="page-placeholder" [text]="this.foods[0].name"></Label>
-    <RadListView [items]="foods">
-        <ng-template tkListItemTemplate let-item="food">
-            <StackLayout orientation="vertical">
-                <Label class="nameLabel" [text]="food.name"></Label>
-                <Label class="descriptionLabel" [text]="food.description"></Label>
+
+
+<ScrollView>
+
+        
+    <StackLayout>
+        
+        <StackLayout style="background-color:#f8f8f8; ">
+            <Label text="Foods" class="text-center p-y-20 h2 font-weight-bold"></Label>
+            <ScrollView orientation="horizontal" (loaded)="onScrollLoaded($event)" (scroll)="onScroll($event)" class="">
+                <StackLayout style="background-color:#f8f8f8; " orientation="horizontal" class="list-group" height="300">
+                    <CardView margin="10" ripple="true" elevation="40" radius="1" *ngFor="let food of foods" id="{{ 'id' + food.id }}" (tap)="onTap($event)">
+                        <GridLayout rows="*, auto" columns="240" > 
+                        <Image row="0" stretch="aspectFill" rowSpan="1" [src]="food.url_image" ></Image>
+                        <StackLayout row="1" class="list-group-item">
+                            <Label class="text-center" [text]="food.name"  color="black"></Label>
+                            <Label class="text-center" text="{{'$' + food.price_food + ' AUD'}}"></Label>
+                            
+                            <GridLayout orientation="horizontal" columns="*" rows="*,*">
+                                <Button row="1" class="btn btn-primary btn-rounded-sm" text="Add to cart"></Button>
+                            </GridLayout>
+                        </StackLayout>
+                        </GridLayout> 
+                    </CardView>
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
+
+        <StackLayout style="background-color:#f8f8f8; ">
+                <Label text="Drinks" class="text-center p-y-20 h2 font-weight-bold"></Label>
+                <ScrollView orientation="horizontal" (loaded)="onScrollLoaded($event)" (scroll)="onScroll($event)" class="">
+                    <StackLayout orientation="horizontal" class="list-group" height="300">
+                        <CardView class="m-15" margin="10" elevation="40" radius="5" *ngFor="let drink of drinks" id="{{ 'id' + drink.id }}" (tap)="onTap($event)">
+                            <GridLayout rows="*, auto" columns="240" > 
+                            <Image row="0" stretch="aspectFill" rowSpan="1" [src]="drink.url_image" ></Image>
+                            <StackLayout row="1" class="list-group-item">
+                                <Label class="text-center" [text]="drink.name"  color="black"></Label>
+                                <Label class="text-center" text="{{'$' + drink.price_drink + ' AUD'}}"></Label>
+                                
+                                <GridLayout orientation="horizontal" columns="*" rows="*,*" >
+                                        
+                                    <Button row="1" class="btn btn-primary btn-rounded-sm " text="Add to cart"></Button>
+                                </GridLayout>
+                            </StackLayout>
+                            </GridLayout> 
+                        </CardView>
+                    </StackLayout>
+                </ScrollView>
             </StackLayout>
-        </ng-template>
-    </RadListView>
-</GridLayout>
+
+
+            <StackLayout style="background-color:#f8f8f8; ">
+                    <Label text="Menus" class="text-center p-y-20 h2 font-weight-bold"></Label>
+                    <ScrollView orientation="horizontal" (loaded)="onScrollLoaded($event)" (scroll)="onScroll($event)" class="">
+                        <StackLayout orientation="horizontal" class="list-group" height="300">
+                            <CardView class="m-15" margin="10" elevation="40" radius="5" *ngFor="let menu of menus" id="{{ 'id' + menu.id }}" (tap)="onTap($event)">
+                                <GridLayout rows="*, auto" columns="240" > 
+                                <Image row="0" stretch="aspectFill" rowSpan="1" [src]="menu.url_image" ></Image>
+                                <StackLayout row="1" class="list-group-item">
+                                    <Label class="text-center" [text]="menu.name"  color="black"></Label>
+                                    <Label class="text-center" text="{{'$' + menu.price_menu + ' AUD'}}"></Label>
+                                    
+                                    <GridLayout orientation="horizontal" columns="*" rows="*,*" >
+                                            
+                                            <Button row="1" class="btn btn-primary btn-rounded-sm" text="Add to cart"></Button>
+                                    </GridLayout>
+                                </StackLayout>
+                                </GridLayout> 
+                            </CardView>
+                        </StackLayout>
+                    </ScrollView>
+                </StackLayout>
+
+    </StackLayout>
+</ScrollView>
+
+        
+
 
 
 
