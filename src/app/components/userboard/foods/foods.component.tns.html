@@ -1,4 +1,10 @@
-<Button text="browse-foods works!" class="btn btn-primary"></Button>
+<ActionBar class="action-bar" >
+        <NavigationButton icon="res://baseline_menu_white_24" (tap)="onDrawerButtonTap()" *ifAndroid></NavigationButton>
+        <ActionItem icon="res://baseline_menu_white_24pt_2x" (tap)="onDrawerButtonTap()" ios.position="left" *ifIos></ActionItem>    
+    
+    <Label class="action-bar-title" text="Browse Foods"></Label>
+</ActionBar>
+
 <RadListView [items]="foods" (itemTap)="onFoodItemTap($event)" class="list-group">
         <!--
         RadListView is a UI component part of the Progress NativeScript UI set of components.
@@ -38,11 +44,6 @@
                                 </FormattedString>
                             </Label>
                             <Label>
-                                <!-- set fontFamily="system" to workaround "Service exited due to Segmentation fault: 11" error -->
-                                <FormattedString ios:fontFamily="system">
-                                    <Span text="&#xf2dc;   " class="fa text-primary"></Span>
-                                    <Span [text]="food.hasAC ? 'Yes' : 'No'"></Span>
-                                </FormattedString>
                             </Label>
                             <StackLayout orientation="horizontal" class="list-group" orientation="horizontal">
                                 <GridLayout columns="*,*" rows="*" class="list-group-item-text">

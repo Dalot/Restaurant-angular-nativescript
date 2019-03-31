@@ -7,11 +7,9 @@ import { Food } from '@/models/food';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
-    
     httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
-    
     constructor(private http: HttpClient) { }
 
     getAll() {
@@ -32,17 +30,5 @@ export class UserService {
 
     delete(id: number) {
         return this.http.delete(`${env.config.apiUrl}/users/${id}`);
-    }
-
-    getFoods() {
-        return this.http.get<any>(`${env.config.apiUrl}/api/products/foods`, this.httpOptions );
-    }
-
-    getDrinks() {
-        return this.http.get<any>(`${env.config.apiUrl}/api/products/drinks`, this.httpOptions );
-    }
-
-    getMenus() {
-        return this.http.get<any>(`${env.config.apiUrl}/api/products/menus`, this.httpOptions );
     }
 }

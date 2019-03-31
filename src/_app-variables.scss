@@ -20,6 +20,8 @@ $accent-light: #4781FE !default;
 $success-dark: #06CE6A !default;
 $success-light: #00E676 !default;
 
+$little-duck: #71bf44 !default;
+
 $warning-dark: #f39c11 !default;
 $warning-light: #F2C112 !default;
 
@@ -62,12 +64,12 @@ $side-drawer-header-brand: #737373;
 $side-drawer-background: #FFFFFF;
 
 // ActionBar
-$ab-background: $accent;
+$ab-background: $little-duck;
 $ab-color: $white;
 
 // Buttons
 $btn-color-inverse: $white;
-$btn-color: $accent;
+$btn-color: $little-duck;
 $btn-color-secondary: darken($btn-color, 10%);
 $btn-color-outline-highlighted: lighten($btn-color, 10%);
 

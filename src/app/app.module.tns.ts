@@ -1,4 +1,5 @@
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
+import { IfAndroidDirective, IfIosDirective } from '@/directives/if-platform.directive';
 
 import { NativeScriptModule } from 'nativescript-angular/nativescript.module';
 
@@ -21,9 +22,13 @@ import { AlertComponent } from '@/components/alert/alert.component';
 import { DashboardComponent } from '@/components/dashboard/dashboard.component';
 import { LoginComponent } from '@/components/login/login.component';
 import { RegisterComponent } from '@/components/register/register.component';
-import { BrowseFoodsComponent } from './components/browse-foods/browse-foods.component';
-// import { UserboardComponent } from '@/components/userboard/userboard.component';
-
+import { UserboardComponent } from '@/components/userboard/userboard.component';
+import { FoodsComponent } from '@/components/userboard/foods/foods.component';
+import { FoodDetailComponent } from '@/components/userboard/foods/food-detail/food-detail.component';
+import { DrinksComponent } from '@/components/userboard/drinks/drinks.component';
+import { DrinkDetailComponent } from './components/userboard/drinks/drink-detail/drink-detail.component';
+import { MenusComponent } from './components/userboard/menus/menus.component';
+import { MenuDetailComponent } from './components/userboard/menus/menu-detail/menu-detail.component';
 
 
 // Uncomment and add to NgModule imports if you need to use two-way binding
@@ -43,8 +48,16 @@ import { BrowseFoodsComponent } from './components/browse-foods/browse-foods.com
     DashboardComponent,
     LoginComponent,
     RegisterComponent,
-    BrowseFoodsComponent,
-    // UserboardComponent,
+    UserboardComponent,
+    FoodsComponent,
+    FoodDetailComponent,
+    IfAndroidDirective,
+    IfIosDirective,
+    DrinksComponent,
+    DrinkDetailComponent,
+    MenusComponent,
+    MenuDetailComponent
+
   ],
   imports: [
     NativeScriptModule,

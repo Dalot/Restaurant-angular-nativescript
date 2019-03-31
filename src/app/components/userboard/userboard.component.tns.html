@@ -1,20 +1,11 @@
 
 
-<ActionBar class="action-bar">
-    <!-- 
-    Use the NavigationButton as a side-drawer button in Android
-    because ActionItems are shown on the right side of the ActionBar
-    -->
-    <NavigationButton ios:visibility="collapsed" icon="res://menu" (tap)="onDrawerButtonTap()"></NavigationButton>
-    <!-- 
-    Use the ActionItem for IOS with position set to left. Using the
-    NavigationButton as a side-drawer button in iOS is not possible,
-    because its function is to always navigate back in the application.
-    -->
-
-<ActionItem icon="res://navigation/menu" android:visibility="collapsed" (tap)="onDrawerButtonTap()"
-        ios.position="left">
-    </ActionItem>
+<ActionBar class="action-bar" >
+   
+    
+    <NavigationButton icon="res://baseline_menu_white_24" (tap)="onDrawerButtonTap()" *ifAndroid></NavigationButton>
+    <ActionItem icon="res://baseline_menu_white_24pt_2x" (tap)="onDrawerButtonTap()" ios.position="left" *ifIos></ActionItem>
+    
     <Label class="action-bar-title" text="Home"></Label>
 </ActionBar>
 
@@ -26,10 +17,11 @@
     <StackLayout>
         
         <StackLayout style="background-color:#f8f8f8; ">
-            <Label text="Foods" class="text-center p-y-20 h2 font-weight-bold"></Label>
+                <Label text="Foods" class="text-center p-y-20 h2 font-weight-bold"></Label>
             <ScrollView orientation="horizontal" (loaded)="onScrollLoaded($event)" (scroll)="onScroll($event)" class="">
+                
                 <StackLayout style="background-color:#f8f8f8; " orientation="horizontal" class="list-group" height="300">
-                    <CardView margin="10" ripple="true" elevation="40" radius="1" *ngFor="let food of foods" id="{{ 'id' + food.id }}" (tap)="onTap($event)">
+                    <CardView margin="10" ripple="true" elevation="40" radius="1" *ngFor="let food of foods" id="{{ food.id }}" (tap)="onFoodItemTap($event)">
                         <GridLayout rows="*, auto" columns="240" > 
                         <Image row="0" stretch="aspectFill" rowSpan="1" [src]="food.url_image" ></Image>
                         <StackLayout row="1" class="list-group-item">
@@ -41,7 +33,10 @@
                             </GridLayout>
                         </StackLayout>
                         </GridLayout> 
-                    </CardView>
+                    </CardView>   
+                    <GridLayout height="300" width="200"  orientation="vertical" columns="*" rows="*">
+                        <Button (tap)="onSeeMoreFoodTap()"row="1" class="btn btn-primary btn-rounded-sm" text="See more"></Button>
+                    </GridLayout>
                 </StackLayout>
             </ScrollView>
         </StackLayout>
@@ -50,7 +45,7 @@
                 <Label text="Drinks" class="text-center p-y-20 h2 font-weight-bold"></Label>
                 <ScrollView orientation="horizontal" (loaded)="onScrollLoaded($event)" (scroll)="onScroll($event)" class="">
                     <StackLayout orientation="horizontal" class="list-group" height="300">
-                        <CardView class="m-15" margin="10" elevation="40" radius="5" *ngFor="let drink of drinks" id="{{ 'id' + drink.id }}" (tap)="onTap($event)">
+                        <CardView margin="10" ripple="true" elevation="40" radius="1" *ngFor="let drink of drinks" id="{{ drink.id }}" (tap)="onDrinkItemTap($event)">
                             <GridLayout rows="*, auto" columns="240" > 
                             <Image row="0" stretch="aspectFill" rowSpan="1" [src]="drink.url_image" ></Image>
                             <StackLayout row="1" class="list-group-item">
@@ -64,6 +59,9 @@
                             </StackLayout>
                             </GridLayout> 
                         </CardView>
+                        <GridLayout height="300" width="200"  orientation="vertical" columns="*" rows="*">
+                            <Button (tap)="onSeeMoreDrinkTap()" row="1" class="btn btn-primary btn-rounded-sm" text="See more"></Button>
+                        </GridLayout>
                     </StackLayout>
                 </ScrollView>
             </StackLayout>
@@ -73,13 +71,12 @@
                     <Label text="Menus" class="text-center p-y-20 h2 font-weight-bold"></Label>
                     <ScrollView orientation="horizontal" (loaded)="onScrollLoaded($event)" (scroll)="onScroll($event)" class="">
                         <StackLayout orientation="horizontal" class="list-group" height="300">
-                            <CardView class="m-15" margin="10" elevation="40" radius="5" *ngFor="let menu of menus" id="{{ 'id' + menu.id }}" (tap)="onTap($event)">
+                            <CardView margin="10" ripple="true" elevation="40" radius="1" *ngFor="let menu of menus" id="{{ menu.id }}" (tap)="onMenuItemTap($event)">
                                 <GridLayout rows="*, auto" columns="240" > 
                                 <Image row="0" stretch="aspectFill" rowSpan="1" [src]="menu.url_image" ></Image>
                                 <StackLayout row="1" class="list-group-item">
                                     <Label class="text-center" [text]="menu.name"  color="black"></Label>
                                     <Label class="text-center" text="{{'$' + menu.price_menu + ' AUD'}}"></Label>
-                                    
                                     <GridLayout orientation="horizontal" columns="*" rows="*,*" >
                                             
                                             <Button row="1" class="btn btn-primary btn-rounded-sm" text="Add to cart"></Button>
@@ -87,6 +84,9 @@
                                 </StackLayout>
                                 </GridLayout> 
                             </CardView>
+                            <GridLayout height="300" width="200"  orientation="vertical" columns="*" rows="*">
+                                <Button row="1" (tap)="onSeeMoreMenuTap()" class="btn btn-primary btn-rounded-sm" text="See more"></Button>
+                            </GridLayout>
                         </StackLayout>
                     </ScrollView>
                 </StackLayout>

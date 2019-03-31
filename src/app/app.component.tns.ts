@@ -12,7 +12,7 @@ import { UserService } from '@/services/user.service';
 
 
 
-@Component({ selector: 'app-root', templateUrl: 'app.component.html' })
+@Component({ selector: 'app-root', templateUrl: 'app.component.html', styles: ['app.component.css'] })
 
 export class AppComponent implements OnInit {
     currentUser = new User();
@@ -62,7 +62,7 @@ export class AppComponent implements OnInit {
             }
         });
 
-        const sideDrawer = app.getRootView() as RadSideDrawer;
+        const sideDrawer = <RadSideDrawer>app.getRootView();
         sideDrawer.closeDrawer();
     }
 }

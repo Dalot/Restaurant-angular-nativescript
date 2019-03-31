@@ -1,4 +1,4 @@
-<Page class="page">
+
     <!-- https://docs.nativescript.org/angular/core-concepts/angular-navigation.html#page-router-outlet -->
 
     <!--
@@ -8,7 +8,7 @@
     -->
     <RadSideDrawer [drawerTransition]="sideDrawerTransition">
         <GridLayout tkDrawerContent rows="auto, *" class="sidedrawer sidedrawer-left">
-            <StackLayout row="0" class="sidedrawer-header">
+            <StackLayout row="0" class="sidedrawer-header" backgroundColor="#71bf44">
                 <Label class="sidedrawer-header-image fa" text="&#xf2bd;"></Label>
                 <Label class="sidedrawer-header-brand" [text]="this.userFromApi.user.name"></Label>
                 <Label class="footnote" [text]="this.userFromApi.user.email"></Label>
@@ -21,11 +21,22 @@
                         <Label col="1" text="Home" class="p-r-10"></Label>
                     </GridLayout>
 
-                    <GridLayout columns="auto, *" class="sidedrawer-list-item" [class.selected]="isComponentSelected('/profile')" (tap)="onNavItemTap('/login')">
+                    <GridLayout columns="auto, *" class="sidedrawer-list-item" [class.selected]="isComponentSelected('/userboad/foods')" (tap)="onNavItemTap('/userboard/foods')">
                         <Label col="0" text="&#xf1ea;" class="fa"></Label>
-                        <Label col="1" text="Profile" class="p-r-10"></Label>
+                        <Label col="1" text="Foods" class="p-r-10"></Label>
                     </GridLayout>
 
+                    <GridLayout columns="auto, *" class="sidedrawer-list-item" [class.selected]="isComponentSelected('/userboad/drinks')" (tap)="onNavItemTap('/userboard/drinks')">
+                        <Label col="0" text="&#xf1ea;" class="fa"></Label>
+                        <Label col="1" text="Drinks" class="p-r-10"></Label>
+                    </GridLayout>
+
+                    <GridLayout columns="auto, *" class="sidedrawer-list-item" [class.selected]="isComponentSelected('/userboad/menus')" (tap)="onNavItemTap('/userboard/menus')">
+                        <Label col="0" text="&#xf1ea;" class="fa"></Label>
+                        <Label col="1" text="Menus" class="p-r-10"></Label>
+                    </GridLayout>
+
+              
                     <GridLayout columns="auto, *" class="sidedrawer-list-item" [class.selected]="isComponentSelected('/orders')" (tap)="onNavItemTap('/register')">
                         <Label col="0" text="&#xf002;" class="fa"></Label>
                         <Label col="1" text="Orders" class="p-r-10"></Label>
@@ -45,4 +56,3 @@
 
         <page-router-outlet tkMainContent class="page page-content"></page-router-outlet>
     </RadSideDrawer>
-</Page>
