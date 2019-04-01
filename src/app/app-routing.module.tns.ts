@@ -12,10 +12,10 @@ import { Role } from '@/models/role';
 import { UserboardComponent } from './components/userboard/userboard.component';
 import { FoodsComponent } from './components/userboard/foods/foods.component';
 import { FoodDetailComponent } from './components/userboard/foods/food-detail/food-detail.component';
-import { DrinksComponent } from './components/userboard/drinks/drinks.component';
+/*import { DrinksComponent } from './components/userboard/drinks/drinks.component';
 import { DrinkDetailComponent } from './components/userboard/drinks/drink-detail/drink-detail.component';
 import { MenusComponent } from './components/userboard/menus/menus.component';
-import { MenuDetailComponent } from './components/userboard/menus/menu-detail/menu-detail.component';
+import { MenuDetailComponent } from './components/userboard/menus/menu-detail/menu-detail.component';*/
 
 const routes: Routes = [
   {
@@ -24,10 +24,10 @@ const routes: Routes = [
   { path: 'userboard', component: UserboardComponent,  canActivate: [AuthGuard] },
   { path: 'userboard/foods', component: FoodsComponent },
   { path: 'userboard/foods/:id', component: FoodDetailComponent},
-  { path: 'userboard/drinks', component: DrinksComponent },
+  /*{ path: 'userboard/drinks', component: DrinksComponent },
   { path: 'userboard/drinks/:id', component: DrinkDetailComponent},
   { path: 'userboard/menus', component: MenusComponent },
-  { path: 'userboard/menus/:id', component: MenuDetailComponent},
+  { path: 'userboard/menus/:id', component: MenuDetailComponent},*/
   {
     path: 'login', component: LoginComponent
   },

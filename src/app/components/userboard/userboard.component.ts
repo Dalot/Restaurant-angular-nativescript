@@ -45,15 +45,12 @@ export class UserboardComponent implements OnInit {
         this.userService.getById(this.currentUser.id).pipe(first()).subscribe(user => {
             this.userFromApi = user;
         });
-        this.productService.getFoods().pipe(first()).subscribe(res => {
+        this.productService.getProducts(10).pipe(first()).subscribe(res => {
             this.foods = res.foods.data;
-        });
-        this.productService.getDrinks().pipe(first()).subscribe(res => {
             this.drinks = res.drinks.data;
-        });
-        this.productService.getMenus().pipe(first()).subscribe(res => {
             this.menus = res.menus.data;
         });
+
     }
 
     onDrawerButtonTap(): void {

@@ -9,6 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NativeScriptHttpClientModule } from 'nativescript-angular/http-client';
 import { NativeScriptFormsModule } from 'nativescript-angular/forms';
 import { NativeScriptUISideDrawerModule } from 'nativescript-ui-sidedrawer/angular';
+import { NativeScriptUIListViewModule } from 'nativescript-ui-listview/angular';
 
 import * as mobileLocalStorage from 'nativescript-localstorage';
 
@@ -25,10 +26,10 @@ import { RegisterComponent } from '@/components/register/register.component';
 import { UserboardComponent } from '@/components/userboard/userboard.component';
 import { FoodsComponent } from '@/components/userboard/foods/foods.component';
 import { FoodDetailComponent } from '@/components/userboard/foods/food-detail/food-detail.component';
-import { DrinksComponent } from '@/components/userboard/drinks/drinks.component';
+/*import { DrinksComponent } from '@/components/userboard/drinks/drinks.component';
 import { DrinkDetailComponent } from './components/userboard/drinks/drink-detail/drink-detail.component';
 import { MenusComponent } from './components/userboard/menus/menus.component';
-import { MenuDetailComponent } from './components/userboard/menus/menu-detail/menu-detail.component';
+import { MenuDetailComponent } from './components/userboard/menus/menu-detail/menu-detail.component';*/
 
 
 // Uncomment and add to NgModule imports if you need to use two-way binding
@@ -53,10 +54,10 @@ import { MenuDetailComponent } from './components/userboard/menus/menu-detail/me
     FoodDetailComponent,
     IfAndroidDirective,
     IfIosDirective,
-    DrinksComponent,
+    /*DrinksComponent,
     DrinkDetailComponent,
     MenusComponent,
-    MenuDetailComponent
+    MenuDetailComponent,*/
 
   ],
   imports: [
@@ -64,6 +65,7 @@ import { MenuDetailComponent } from './components/userboard/menus/menu-detail/me
     NativeScriptFormsModule,
     NativeScriptHttpClientModule,
     NativeScriptUISideDrawerModule,
+    NativeScriptUIListViewModule,
     ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,

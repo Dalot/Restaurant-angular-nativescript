@@ -1,1 +1,30 @@
-<Button text="drink-detail works!" class="btn btn-primary"></Button>
+<ActionBar class="action-bar" >
+        <NavigationButton icon="res://baseline_menu_white_24" (tap)="onDrawerButtonTap()" *ifAndroid></NavigationButton>
+        <ActionItem icon="res://baseline_menu_white_24pt_2x" (tap)="onDrawerButtonTap()" ios.position="left" *ifIos></ActionItem>    
+    
+    <Label class="action-bar-title" [text]="drink.name"></Label>
+</ActionBar>
+
+<GridLayout class="page page-content">
+        <ScrollView>
+            <GridLayout rows="auto, auto, auto">
+                <Image [src]="drink.url_image" stretch="aspectFill" height="200" class="m-b-15"></Image>
+    
+                <StackLayout row="1" class="hr-light m-t-15 m-b-15"></StackLayout>
+    
+                <GridLayout row="2" rows="*,*,*,*,*,*" columns="auto, auto">
+    
+                    <Label text="Price" class="p-l-15 p-b-10 m-r-20 font-weight-bold"></Label>
+                    <Label col="1" class="text p-b-10">
+                        <FormattedString>
+                            <Span text="{{ '$' + drink.price_drink + ' AUD' }}"></Span>
+                        </FormattedString>
+                    </Label>
+    
+                    <Label text="Description" class="p-l-15 p-b-10 m-r-20 font-weight-bold" row="2"></Label>
+                    <Label [text]="drink.description" row="2" col="1" class="text p-b-10"></Label>
+
+                </GridLayout>
+            </GridLayout>
+        </ScrollView>
+    </GridLayout>

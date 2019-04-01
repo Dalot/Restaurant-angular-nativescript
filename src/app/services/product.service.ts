@@ -9,7 +9,9 @@ export class ProductService {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
     constructor(private http: HttpClient) { }
-
+    getProducts(amount) {
+      return this.http.get<any>(`${env.config.apiUrl}/api/products/${amount}`, this.httpOptions );
+  }
     getFoods() {
         return this.http.get<any>(`${env.config.apiUrl}/api/products/foods`, this.httpOptions );
     }
