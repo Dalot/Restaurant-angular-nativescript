@@ -44,7 +44,26 @@ export class AuthenticationService {
                 return user;
             }));
     }
+    register(name: string, email: string, password: string, password_confirmation: string) {
+        const data = {
+            'name': name,
+            'email': email,
+            'password': password,
+            'password_confirmation': password_confirmation
+        };
 
+        return this.http.post<any>(`${env.config.apiUrl}/api/register`, data)
+            .pipe(map( (user) => {
+                // registration successful if there's a jwt token in the response
+                if (user && user.token) {
+                    // store user details and jwt token in local localStorage to keep user logged in between page refreshes
+                    this.localStorage.setItem('currentUser', JSON.stringify(user));
+                    this.currentUserSubject.next(user);
+                }
+
+                return user;
+            }));
+    }
     logout() {
         // remove user from local localStorage to log user out
         this.localStorage.removeItem('currentUser');

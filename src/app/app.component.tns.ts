@@ -27,7 +27,7 @@ export class AppComponent implements OnInit {
         private userService: UserService
     ) { this.authenticationService.currentUser.subscribe(x => { this.currentUser = x; }); }
     ngOnInit(): void {
-        this.activatedUrl = '/home';
+        this.activatedUrl = '';
         this.sideDrawerTransition = new SlideInOnTopTransition();
 
         this.router.events

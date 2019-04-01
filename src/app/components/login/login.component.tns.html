@@ -1,5 +1,5 @@
-<FlexboxLayout class="page">
-	<StackLayout [formGroup]="loginForm" class="form" >
+<FlexboxLayout  class="page">
+	<StackLayout *ngIf="isLoggingIn" [formGroup]="loginForm" class="form" >
 		
 		<Label class="header" text="3rd Little Duck"></Label>
 
@@ -9,17 +9,39 @@
 		</StackLayout>
 
 		<StackLayout class="input-field">
-			<TextField #password class="input" hint="Password" secure="true" formControlName="password" [returnKeyType]="isLoggingIn ? 'done' : 'next'" (returnPress)="focusConfirmPassword()"></TextField>
+			<TextField #password class="input" hint="Password" secure="true" formControlName="password" returnKeyType="done" (returnPress)="focusConfirmPassword()"></TextField>
 			<StackLayout class="hr-light"></StackLayout>
 		</StackLayout>
 
-		<StackLayout *ngIf="!isLoggingIn" class="input-field">
-			<TextField #confirmPassword class="input" hint="Confirm password" secure="true" [(ngModel)]="user.confirmPassword" returnKeyType="done"></TextField>
+		<Button text="Log In" (tap)="submitLogin()" class="btn btn-primary m-t-20"></Button>
+		<Label text="Forgot your password?" class="login-label" (tap)="forgotPassword()"></Label>
+	</StackLayout>
+
+	<StackLayout *ngIf="!isLoggingIn" [formGroup]="registerForm" class="form" >
+		
+		<Label class="header" text="3rd Little Duck"></Label>
+
+		<StackLayout class="input-field">
+			<TextField class="input" hint="Name" formControlName="name" returnKeyType="done" returnKeyType="next"></TextField>
 			<StackLayout class="hr-light"></StackLayout>
 		</StackLayout>
 
-		<Button [text]="isLoggingIn ? 'Log In' : 'Sign Up'" (tap)="submit()" class="btn btn-primary m-t-20"></Button>
-		<Label *ngIf="isLoggingIn" text="Forgot your password?" class="login-label" (tap)="forgotPassword()"></Label>
+		<StackLayout class="input-field">
+			<TextField class="input" hint="Email" keyboardType="email" autocorrect="false" autocapitalizationType="none" formControlName="email" returnKeyType="next" (returnPress)="focusPassword()"></TextField>
+			<StackLayout class="hr-light"></StackLayout>
+		</StackLayout>
+
+		<StackLayout class="input-field">
+			<TextField #password class="input" hint="Password" secure="true" formControlName="password" [returnKeyType]="next" (returnPress)="focusConfirmPassword()"></TextField>
+			<StackLayout class="hr-light"></StackLayout>
+		</StackLayout>
+
+		<StackLayout class="input-field">
+			<TextField #confirmPassword class="input" hint="Confirm password" secure="true" formControlName="password_confirmation" returnKeyType="done"></TextField>
+			<StackLayout class="hr-light"></StackLayout>
+		</StackLayout>
+
+		<Button text="Sign Up" (tap)="submitRegister()" class="btn btn-primary m-t-20"></Button>
 	</StackLayout>
 
 	<Label class="login-label sign-up-label" (tap)="toggleForm()">

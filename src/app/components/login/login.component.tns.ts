@@ -8,7 +8,6 @@ import { Page } from 'tns-core-modules/ui/page';
 import { AlertService } from '@/services/alert.service';
 
 import { AuthenticationService } from '@/services/authentication.service';
-import { first } from 'rxjs/operators';
 
 @Component({
     moduleId: module.id,
@@ -19,6 +18,7 @@ export class LoginComponent implements OnInit {
 
     isLoggingIn = true;
     loginForm: FormGroup;
+    registerForm: FormGroup;
     loading = false;
     submitted = false;
     returnUrl: string;
@@ -43,43 +43,53 @@ export class LoginComponent implements OnInit {
         }
     }
     ngOnInit() {
-        this.loginForm = this.formBuilder.group({
+        if (this.isLoggingIn) {
+            this.loginForm = this.formBuilder.group({
+                email: ['', Validators.required],
+                password: ['', Validators.required]
+            });
+        }
+        this.registerForm = this.formBuilder.group({
+            name: ['', Validators.required],
             email: ['', Validators.required],
-            password: ['', Validators.required]
+            password: ['', Validators.required, Validators.minLength(6)],
+            password_confirmation: ['', Validators.required],
         });
         // get return url from route parameters or default to '/'
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     }
 
     // convenience getter for easy access to form fields
-    get f() { return this.loginForm.controls; }
+    get l() { return this.loginForm.controls; }
+    get r() { return this.registerForm.controls; }
 
 
     toggleForm() {
         this.isLoggingIn = !this.isLoggingIn;
     }
 
-    submit() {
+    submitLogin() {
         this.submitted = true;
-
         // stop here if form is invalid
         if (this.loginForm.invalid) {
             return;
         }
-        if (!this.f.email.value || !this.f.password.value) {
+        if (!this.l.email.value || !this.l.password.value) {
             this.alert('Please provide both an email address and password.');
             return;
         }
-
-        if (this.isLoggingIn) {
-            this.login();
-        } else {
-            this.register();
-        }
+        this.login();
     }
-
+    submitRegister() {
+        this.submitted = true;
+        // stop here if form is invalid
+        if (this.registerForm.invalid) {
+            return;
+        }
+        this.register();
+    }
     login() {
-        this.authenticationService.login(this.f.email.value, this.f.password.value)
+        this.authenticationService.login(this.l.email.value, this.l.password.value)
             .subscribe(
                 data => {
                     this.router.navigate([this.returnUrl]);
@@ -91,33 +101,45 @@ export class LoginComponent implements OnInit {
     }
 
     register() {
-        if (this.password != this.confirmPassword) {
+        if (this.r.password.value !== this.r.password_confirmation.value) {
             this.alert('Your passwords do not match.');
             return;
         }
-        // REGISTER
+        if (!this.r.name.value) {
+            this.alert('Please complete all the fields');
+        }
+        this.authenticationService.register(
+            this.r.name.value,
+            this.r.email.value,
+            this.r.password.value,
+            this.r.password_confirmation.value)
+            .subscribe(
+                data => {
+                    this.router.navigate([this.returnUrl]);
+                },
+                error => {
+                    this.error = error;
+                    this.loading = false;
+                });
     }
-
     forgotPassword() {
         prompt({
-            title: 'Forgot Password',
-            message: 'Enter the email address you used to register for APP NAME to reset your password.',
-            inputType: 'email',
-            defaultText: '',
-            okButtonText: 'Ok',
-            cancelButtonText: 'Cancel'
+          title: 'Forgot Password',
+          message: 'Enter the email address you used to register for to reset your password.',
+          defaultText: '',
+          okButtonText: 'Ok',
+          cancelButtonText: 'Cancel'
         }).then((data) => {
-            if (data.result) {
-                /*this.userService.resetPassword(data.text.trim())
-                    .then(() => {
-                        this.alert('Your password was successfully reset. Please check your email for instructions on choosing a new password.');
-                    }).catch(() => {
-                        this.alert('Unfortunately, an error occurred resetting your password.');
-                    });*/
-            }
+          if (data.result) {
+            // Call the backend to reset the password
+            alert({
+              title: '3rd Little Duck',
+              message: 'Your password was successfully reset. Please check your email for instructions on choosing a new password.',
+              okButtonText: 'Ok'
+            });
+          }
         });
-    }
-
+      }
     focusPassword() {
         this.password.nativeElement.focus();
     }
