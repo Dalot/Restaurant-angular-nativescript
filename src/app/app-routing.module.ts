@@ -1,23 +1,18 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { UserboardComponent } from '@/components/userboard/userboard.component';
 import { DashboardComponent } from '@/components/dashboard/dashboard.component';
 import { LoginComponent } from '@/components/login/login.component';
 import { RegisterComponent } from '@/components/register/register.component';
-import { FoodsComponent } from './components/userboard/foods/foods.component';
-import { FoodDetailComponent } from './components/userboard/foods/food-detail/food-detail.component';
 
 import { AuthGuard } from '@/guards/auth.guard';
 import { Role } from '@/models/role';
 
 const routes: Routes = [
     {
-      path: '', component: UserboardComponent, canActivate: [AuthGuard]
+      path: '', redirectTo: '/userboard', pathMatch: 'full'
     },
-    { path: 'userboard', component: UserboardComponent, outlet: 'userboard', canActivate: [AuthGuard] },
-    { path: 'userboard/foods', component: FoodsComponent, outlet: 'userboard'},
-    { path: 'userboard/foods/:id', component: FoodDetailComponent, outlet: 'userboard'},
+    { path: 'userboard', loadChildren: '@/components/userboard/userboard.module#UserboardModule', canActivate: [AuthGuard], },
     {
       path: 'login', component: LoginComponent
     },

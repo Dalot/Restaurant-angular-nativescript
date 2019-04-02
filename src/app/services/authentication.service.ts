@@ -28,8 +28,8 @@ export class AuthenticationService {
     }
     login(email: string, password: string) {
         const data = {
-            'email': email,
-            'password': password
+            email,
+            password
         };
 
         return this.http.post<any>(`${env.config.apiUrl}/api/login`, data)
@@ -46,10 +46,10 @@ export class AuthenticationService {
     }
     register(name: string, email: string, password: string, password_confirmation: string) {
         const data = {
-            'name': name,
-            'email': email,
-            'password': password,
-            'password_confirmation': password_confirmation
+            name,
+            email,
+            password,
+            password_confirmation
         };
 
         return this.http.post<any>(`${env.config.apiUrl}/api/register`, data)

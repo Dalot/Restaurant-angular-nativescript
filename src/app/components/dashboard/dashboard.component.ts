@@ -4,7 +4,7 @@ import { first } from 'rxjs/operators';
 
 import { User } from '@/models/user';
 import { AuthenticationService } from '@/services/authentication.service';
-import { UserService } from '@/services/user.service'
+import { UserService } from '@/services/user.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,11 +12,9 @@ import { UserService } from '@/services/user.service'
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit, OnDestroy {
-    
     currentUser: User;
     currentUserSubscription: Subscription;
     users: User[] = [];
-    
 
     constructor(
         private authenticationService: AuthenticationService,
@@ -24,13 +22,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
     ) {
         this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
             this.currentUser = user;
-            
         });
     }
 
     ngOnInit() {
         this.loadAllUsers();
-        
     }
 
     ngOnDestroy() {
@@ -40,12 +36,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
     deleteUser(id: number) {
         this.userService.delete(id).pipe(first()).subscribe(() => {
-            this.loadAllUsers()
+            this.loadAllUsers();
         });
     }
 
     private loadAllUsers() {
-        
         this.userService.getAll().pipe(first()).subscribe(users => {
             console.log(users);
             this.users = users;

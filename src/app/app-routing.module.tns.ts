@@ -21,13 +21,7 @@ const routes: Routes = [
   {
     path: '', component: UserboardComponent, canActivate: [AuthGuard]
   },
-  { path: 'userboard', component: UserboardComponent,  canActivate: [AuthGuard] },
-  { path: 'userboard/foods', component: FoodsComponent },
-  { path: 'userboard/foods/:id', component: FoodDetailComponent},
-  /*{ path: 'userboard/drinks', component: DrinksComponent },
-  { path: 'userboard/drinks/:id', component: DrinkDetailComponent},
-  { path: 'userboard/menus', component: MenusComponent },
-  { path: 'userboard/menus/:id', component: MenuDetailComponent},*/
+  { path: 'userboard', loadChildren: './components/userboard/userboard.module#UserboardModule',  canActivate: [AuthGuard] },
   {
     path: 'login', component: LoginComponent
   },
@@ -45,7 +39,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [NativeScriptRouterModule.forRoot(routes)],
+  imports: [NativeScriptRouterModule.forRoot(routes, { enableTracing: true})],
   exports: [NativeScriptRouterModule]
 })
 export class AppRoutingModule { }

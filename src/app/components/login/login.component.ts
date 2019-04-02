@@ -8,7 +8,6 @@ import { AlertService } from '@/services/alert.service';
 
 @Component({templateUrl: './login.component.html'})
 export class LoginComponent implements OnInit {
-  
     loginForm: FormGroup;
     loading = false;
     submitted = false;
@@ -22,7 +21,7 @@ export class LoginComponent implements OnInit {
         private alertService: AlertService
     ) {
         // redirect to home if already logged in
-        if (this.authenticationService.currentUserValue) { 
+        if (this.authenticationService.currentUserValue) {
             this.router.navigate(['/']);
         }
     }

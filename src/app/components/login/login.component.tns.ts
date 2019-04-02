@@ -15,7 +15,7 @@ import { AuthenticationService } from '@/services/authentication.service';
     styleUrls: ['./login.component.tns.css']
 })
 export class LoginComponent implements OnInit {
-
+    public isAuthenticating: boolean;
     isLoggingIn = true;
     loginForm: FormGroup;
     registerForm: FormGroup;
@@ -39,21 +39,22 @@ export class LoginComponent implements OnInit {
         this.page.actionBarHidden = true;
         // redirect to home if already logged in
         if (this.authenticationService.currentUserValue) {
-            this.router.navigate(['/']);
+            this.router.navigate(['/userboard']);
         }
     }
     ngOnInit() {
-        if (this.isLoggingIn) {
-            this.loginForm = this.formBuilder.group({
+        this.isAuthenticating = true;
+        if (!this.isLoggingIn) {
+            this.registerForm = this.formBuilder.group({
+                name: ['', Validators.required],
                 email: ['', Validators.required],
-                password: ['', Validators.required]
+                password: ['', Validators.required, Validators.minLength(6)],
+                password_confirmation: ['', Validators.required],
             });
         }
-        this.registerForm = this.formBuilder.group({
-            name: ['', Validators.required],
+        this.loginForm = this.formBuilder.group({
             email: ['', Validators.required],
-            password: ['', Validators.required, Validators.minLength(6)],
-            password_confirmation: ['', Validators.required],
+            password: ['', Validators.required]
         });
         // get return url from route parameters or default to '/'
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
@@ -99,7 +100,6 @@ export class LoginComponent implements OnInit {
                     this.loading = false;
                 });
     }
-
     register() {
         if (this.r.password.value !== this.r.password_confirmation.value) {
             this.alert('Your passwords do not match.');
@@ -153,7 +153,7 @@ export class LoginComponent implements OnInit {
         return alert({
             title: '3RD Little Duck',
             okButtonText: 'OK',
-            message: message
+            message
         });
     }
 }

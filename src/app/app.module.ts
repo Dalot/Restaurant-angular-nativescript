@@ -13,10 +13,7 @@ import { AlertComponent } from '@/components/alert/alert.component';
 import { DashboardComponent } from '@/components/dashboard/dashboard.component';
 import { LoginComponent } from '@/components/login/login.component';
 import { RegisterComponent } from '@/components/register/register.component';
-import { DrinksComponent } from '@/components/userboard/drinks/drinks.component';
-import { DrinkDetailComponent } from './components/userboard/drinks/drink-detail/drink-detail.component';
-import { MenusComponent } from './components/userboard/menus/menus.component';
-import { MenuDetailComponent } from './components/userboard/menus/menu-detail/menu-detail.component';
+
 
 @NgModule({
   declarations: [
@@ -25,10 +22,6 @@ import { MenuDetailComponent } from './components/userboard/menus/menu-detail/me
     DashboardComponent,
     LoginComponent,
     RegisterComponent,
-    DrinksComponent,
-    DrinkDetailComponent,
-    MenusComponent,
-    MenuDetailComponent,
   ],
   imports: [
     BrowserModule,

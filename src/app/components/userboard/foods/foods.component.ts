@@ -29,14 +29,12 @@ export class FoodsComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         if (!this._foods) {
-            
 
             return this.productService.getFoods()
                 .pipe(first())
                 .subscribe((res) => {
                     this._foods = res.foods.data;
                 });
-                
         }
     }
     ngOnDestroy(): void {

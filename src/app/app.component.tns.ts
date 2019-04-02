@@ -15,7 +15,7 @@ import { UserService } from '@/services/user.service';
 @Component({ selector: 'app-root', templateUrl: 'app.component.html', styles: ['app.component.css'] })
 
 export class AppComponent implements OnInit {
-    currentUser = new User();
+    currentUser: any;
     private activatedUrl: string;
     private sideDrawerTransition: DrawerTransitionBase;
     private userFromApi: any;
